@@ -1,0 +1,614 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mani">
+
+	<!-- TODO: set to correct mass values
+		   set to correct inertia values
+		   joint speed chassis_to_steeringangles
+		   adjust coordinate system in CAD files
+		   add camera head -->
+
+	<xacro:property name="to_scale" value="0.01"/>
+
+	<!-- Links -->
+	<link name="dummy">
+	</link>
+
+	<link name="chassis">
+		<xacro:property name="ch_x_depth" value="4.84"/>
+		<xacro:property name="ch_y_width" value="4.50"/>
+		<xacro:property name="ch_z_height" value="1.59"/>
+		<xacro:property name="ch_mass" value="0.1"/> <!-- 12.191 in kg -->
+
+		<visual name="visual">
+			<origin xyz="0 0 0"/>
+		<!--	<origin xyz="${ch_x_depth/2-ch_x_depth/5+0.14} ${ch_y_width/2-0.0075} 0.125" rpy="0 0 ${1.570*2}"/>-->
+			<geometry>
+				<box size="${ch_x_depth} ${ch_y_width} ${ch_z_height}"/><!--
+				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-chassis.STL" scale="${to_scale} ${to_scale} ${to_scale}"/> 			    -->  
+			</geometry>
+		</visual>
+
+		<!-- simplify as a box for quicker processing -->
+		<collision name="collision">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="${ch_x_depth} ${ch_y_width} ${ch_z_height}"/>
+			</geometry>
+		</collision>
+		
+		<inertial>
+			<!-- origin = center of mass -->
+		<!--	<origin xyz="0.1179 -0.2492 -0.0002"/>-->
+			<mass value="${ch_mass}"/>
+			<inertia ixx="0.1" 
+				 ixy="0" 
+				 ixz="0" 
+				 iyy="0.1" 
+				 iyz="0" 
+				 izz="0.1"/>
+		</inertial>
+	</link>
+
+	<link name="camera_neck">
+		<xacro:property name="camn_x" value="0.53"/>
+		<xacro:property name="camn_y" value="3.05"/>
+		<xacro:property name="camn_z" value="1.22"/>
+		<xacro:property name="camn_mass" value="0.1"/>
+
+		<visual name="visual">
+			<!-- y, x, z --><!--
+			<origin xyz="${ch_x_depth/4-camn_x/2+0.05} ${ch_y_width/2-camn_y/4+0.1} ${-ch_z_height/2-camn_z/2+0.01}" rpy="0 0 ${2*1.570}"/>
+			<geometry>
+				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-cameraneck.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+			</geometry>-->
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<box size="${camn_x} ${camn_y} ${camn_z}"/>
+			</geometry>
+		</visual>
+
+		<collision name="collision">
+			<origin xyz="0 0 0"/>
+                        <geometry>
+                                <box size="${camn_x} ${camn_y} ${camn_z}"/>
+                        </geometry>
+		</collision>
+
+		<inertial>
+			<mass value="${camn_mass}"/>
+			<inertia ixx="0.1" 
+                                 ixy="0" 
+                                 ixz="0" 
+                                 iyy="0.1" 
+                                 iyz="0" 
+                                 izz="0.1"/>
+		</inertial>
+	</link>
+
+	<link name="camera_head">
+		<xacro:property name="camh_x" value="0.53"/>
+		<xacro:property name="camh_y" value="2.03"/>
+		<xacro:property name="camh_z" value="0.88"/>
+		<xacro:property name="camh_mass" value="0.1"/>
+
+		<visual name="visual"><!--
+			<origin xyz="${ch_x_depth/4-0.6325} ${ch_y_width/4} ${-ch_z_height/2-camh_z}" rpy="0 0 ${2*1.570}"/>
+			<geometry>
+				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-camerahead.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+			</geometry>-->
+			<origin xyz="0 0 0"/>
+			<geometry>	
+				<box size="${camh_x} ${camh_y} ${camh_z}"/>
+			</geometry>
+		</visual>
+		
+		<collision name="collision">
+			<origin xyz="0 0 ${camh_z/3}" rpy="0 0 1.570"/>
+			<geometry>
+				<box size="${camh_x} ${camh_y} ${camh_z}"/>
+			</geometry>
+		</collision>
+
+		<inertial>
+			<mass value="${camh_mass}"/>
+			<inertia ixx="0.1" 
+                                 ixy="0" 
+                                 ixz="0" 
+                                 iyy="0.1" 
+                                 iyz="0" 
+                                 izz="0.1"/>
+		</inertial>
+	</link>
+
+	<xacro:macro name="steering_angle_inertia" params="mass">
+		<inertial>
+			<origin rpy="0 0 0"/>
+			<mass value="${mass}"/>
+			<inertia ixx="0.1" 
+                                 ixy="0" 
+                                 ixz="0" 
+                                 iyy="0.1" 
+                                 iyz="0" 
+                                 izz="0.1"/>
+                </inertial>	
+	</xacro:macro>
+
+	<xacro:property name="sa_x" value="0.44"/>
+        <xacro:property name="sa_y" value="1.21"/>
+        <xacro:property name="sa_z" value="1.30"/> <!-- 1.26 -->
+        <xacro:property name="sa_mass" value="0.1"/> <!-- 0.30109 -->
+	<xacro:macro name="steering_angle" params="name *visual_origin *collision_origin *inertial_origin"> 
+		<link name="steering_angle_${name}">
+                	<visual name="visual">
+                    		<xacro:insert_block name="visual_origin"/>
+<!--                        	<geometry>
+                                	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                        	</geometry>-->
+                        	<geometry>
+                                	<box size="${sa_x} ${sa_y} ${sa_z}"/>
+                        	</geometry>
+                	</visual>
+
+                	<!-- not possible to simplify with a simple shape, so use original mesh -->
+                	<collision name="collision">
+                        	<xacro:insert_block name="collision_origin"/>
+                        	<geometry>
+                        		<box size="${sa_x} ${sa_y} ${sa_z}"/>
+<!--                            	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL"/>
+    -->                         </geometry>
+                	</collision>
+
+                	<inertial>
+				<xacro:insert_block name="inertial_origin"/>
+				<mass value="${sa_mass}"/>
+				<inertia ixx="0.1" 
+                                 	 ixy="0" 
+                                	 ixz="0" 
+                                 	 iyy="0.1" 
+                                 	 iyz="0" 
+                                 	 izz="0.1"/>
+                	</inertial>
+        	</link>
+	</xacro:macro>
+
+	<steering_angle name="frontright">
+		<origin xyz="0 ${sa_y/4} 0"/>
+		<origin xyz="0 ${sa_y/4} 0"/>
+		<origin xyz="0 0 0"/>
+	</steering_angle>
+<!--
+	<link name="steering_angle_frontright">
+		<xacro:property name="sa_x" value="0.44"/>
+		<xacro:property name="sa_y" value="1.21"/>
+		<xacro:property name="sa_z" value="1.30"/> <!- - 1.26 - ->
+		<xacro:property name="sa_mass" value="0.1"/> <!- - 0.30109 - ->
+		<visual name="visual">		
+<!- -			<origin xyz="${-6.075} ${-0.570} ${-ch_z_height/2+0.175}"/>
+                   	<geometry>
+                  		<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                   	</geometry>- ->
+			<origin xyz="0 ${sa_y/4} 0"/>
+			<geometry>
+				<box size="${sa_x} ${sa_y} ${sa_z}"/>
+			</geometry>
+               	</visual>
+
+                <!- - not possible to simplify with a simple shape, so use original mesh - ->
+                <collision name="collision">
+			<origin xyz="0 ${sa_y/4} 0"/>
+                	<geometry>
+			<box size="${sa_x} ${sa_y} ${sa_z}"/>
+<!- -                           	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL"/>
+    - ->                  	</geometry>
+             	</collision>
+		
+		<xacro:steering_angle_inertia mass="${sa_mass}"/>
+	</link>	
+-->
+         <link name="steering_angle_backright">
+                <visual name="visual"><!--
+                        <origin xyz="-6.1 -0.56 ${-ch_z_height/2+0.175}" rpy="0 0 0"/>
+                        <geometry>
+                  		<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                     	</geometry>-->
+			<origin xyz="0 ${sa_y/4} 0"/>
+			<geometry>
+				<box size="${sa_x} ${sa_y} ${sa_z}"/>
+			</geometry>
+                </visual>
+
+                <!-- not possible to simplify with a simple shape, so use original mesh -->
+                <collision name="collision">
+                        <origin xyz="0 ${sa_y/4} 0"/>
+                        <geometry>
+                        	<box size="${sa_x} ${sa_y} ${sa_z}"/>
+<!--                            <mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL"/>
+    -->                         </geometry>
+                </collision>
+		
+		<xacro:steering_angle_inertia mass="${sa_mass}"/>
+        </link>
+
+	 <link name="steering_angle_frontleft">
+
+              	<visual name="visual"> <!--
+         	        <origin xyz="6.1 0.52 ${-ch_z_height/2+0.175}" rpy="0 0 ${1.570*2}"/>
+                        <geometry>
+                        	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                   </geometry>-->
+			<origin xyz="0 ${-sa_y/4} 0"/>
+			<geometry>
+				<box size="${sa_x} ${sa_y} ${sa_z}"/>
+			</geometry>
+                </visual>
+
+                <!-- not possible to simplify with a simple shape, so use original mesh -->
+                <collision name="collision">
+                        <origin xyz="0 ${-sa_y/4} 0"/>
+                        <geometry>
+                        <box size="${sa_x} ${sa_y} ${sa_z}"/>
+<!--                            <mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL"/>-->
+                             </geometry>
+                </collision>
+		
+		<xacro:steering_angle_inertia mass="${sa_mass}"/>
+        </link> 
+
+	<link name="steering_angle_backleft">
+               	<visual name="visual"><!--
+                        <origin xyz="6.09 0.525 ${-ch_z_height/2+0.175}" rpy="0 0 ${1.570*2}"/>
+                        <geometry>
+                                <mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                   	</geometry>-->
+			<origin xyz="0 ${-sa_y/4} 0"/>
+			<geometry>
+				<box size="${sa_x} ${sa_y} ${sa_z}"/>
+			</geometry>
+                </visual>
+
+                <!-- not possible to simplify with a simple shape, so use original mesh -->
+                <collision name="collision">
+                       	<origin xyz="0 ${-sa_y/4} 0"/>
+                        <geometry>
+                        	<box size="${sa_x} ${sa_y} ${sa_z}"/>
+<!--                            <mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL"/>
+    -->                 </geometry>
+                </collision>
+		
+		<xacro:steering_angle_inertia mass="${sa_mass}"/>
+	</link>
+
+	<!-- wheels --> 
+
+	<link name="wheel_frontright">
+		<xacro:property name="wh_length" value="1.15"/>
+  		<xacro:property name="wh_radius" value="${1.30/2}"/>
+               	<xacro:property name="wh_mass" value="0.1"/> <!-- 0.57134 -->
+
+		<visual name="visual">
+			<!-- x -z y --><!--
+			<origin xyz="${-6.09} ${wh_radius+0.09} ${-wh_length/2}" rpy="1.570 0 0"/>	
+			<geometry>
+				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-wheel.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+			</geometry>-->
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="${wh_length}" radius="${wh_radius}"/>
+			</geometry>
+		</visual>
+
+		<collision name="collision">
+			<origin xyz="0 0 0"/>	
+			<geometry>
+				<cylinder length="${wh_length}" radius="${wh_radius}"/>
+			</geometry>
+		</collision>
+
+		<inertial>
+			<mass value="${wh_mass}"/>
+			<inertia ixx="0.1"
+				 ixy="0"
+				 ixz="0"
+				 iyy="0.1"
+				 iyz="0"
+				 izz="0.1"/>
+		</inertial>
+	</link>
+
+	<link name="wheel_frontleft">
+                <visual name="visual">
+			<origin xyz="0 0 0"/>
+                        <geometry>
+				<cylinder length="${wh_length}" radius="${wh_radius}"/>
+			</geometry>
+                </visual>
+
+                <collision name="collision">
+                        <origin xyz="0 0 0"/>
+                        <geometry>
+                                <cylinder length="${wh_length}" radius="${wh_radius}"/>
+                        </geometry>
+                </collision>
+
+                <inertial>
+                        <mass value="${wh_mass}"/>
+                        <inertia ixx="0.1"
+                                 ixy="0"
+                                 ixz="0"
+                                 iyy="0.1"
+                                 iyz="0"
+                                 izz="0.1"/>
+                </inertial>
+        </link>
+
+	<link name="wheel_backright">
+                <visual name="visual"><!--
+                 	<origin xyz="${-6.12} ${wh_radius+0.09} ${-wh_length/2}" rpy="1.570 0 0"/>
+                        <geometry>
+                                <mesh filename="file://$(find mani)/mani_description/meshes/MANI-wheel.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                	</geometry>-->
+			<origin xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="${wh_length}" radius="${wh_radius}"/>
+			</geometry>
+		</visual>
+
+                <collision name="collision">
+                        <origin xyz="0 0 0"/>
+                        <geometry>
+                                <cylinder length="${wh_length}" radius="${wh_radius}"/>
+                        </geometry>
+                </collision>
+
+                <inertial>
+                        <mass value="${wh_mass}"/>
+                        <inertia ixx="0.1"
+                                 ixy="0"
+                                 ixz="0"
+                                 iyy="0.1"
+                                 iyz="0"
+                                 izz="0.1"/>
+                </inertial>
+        </link>
+
+	<link name="wheel_backleft">
+                <visual name="visual">
+                        <origin xyz="0 0 0"/>
+                        <geometry>
+                                <cylinder length="${wh_length}" radius="${wh_radius}"/>
+                        </geometry>
+                </visual>
+
+                <collision name="collision">
+                        <origin xyz="0 0 0"/>
+                        <geometry>
+                                <cylinder length="${wh_length}" radius="${wh_radius}"/>
+                        </geometry>
+                </collision>
+
+                <inertial>
+                       	<mass value="${wh_mass}"/>
+                        <inertia ixx="0.1"
+                                 ixy="0"
+                                 ixz="0"
+                                 iyy="0.1"
+                                 iyz="0"
+                                 izz="0.1"/>
+                </inertial>
+        </link>
+
+	<!-- Joints -->
+	<joint name="dummy_joint" type="fixed">
+		<parent link="dummy"/>
+		<child link="chassis"/>
+		<origin xyz="0 0 ${-(2-ch_z_height)/2+sa_z-0.22+wh_radius}"/>
+	</joint>
+
+	<!-- camera head 60-60 grad-->
+	<joint name="chassis_to_cam_neck" type="revolute"> <!-- revolute -->
+		<parent link="chassis"/>
+		<child link="camera_neck"/>
+		<limit effort="100.0" lower="-1.0472" upper="1.0472" velocity="10"/>
+		<axis xyz="0 0 1"/>
+		<origin xyz="${ch_x_depth/2-camn_x/2} 0 ${ch_z_height/2+camn_z/2}" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="cam_neck_to_head" type="revolute">
+		<parent link="camera_neck"/>
+		<child link="camera_head"/>
+		<limit effort="100.0" lower="-1.570" upper="1.570" velocity="10"/>
+		<axis xyz="0 1 0"/>
+		<origin xyz="0 0 ${camn_z*0.3}" rpy="0 0 0"/>
+	</joint>
+
+	<!-- f: front, b: back, l: left, r: right-->
+	<xacro:property name="steering_max_vel" value="0.75"/>
+	<joint name="chassis_to_steering_fr" type="revolute"> <!-- revolute -->
+		<parent link="chassis"/>
+		<child link="steering_angle_frontright"/>
+		<limit effort="100.0" lower="-1.570" upper="1.570" velocity="${steering_max_vel}"/>
+		<axis xyz="0 0 1"/>
+		<origin xyz="${ch_x_depth/2-sa_x/2} ${-ch_y_width/2+sa_y/2} ${-ch_z_height/2-sa_z/2}"/>
+	</joint>
+	
+	<joint name="chassis_to_steering_br" type="revolute">
+                <parent link="chassis"/>
+                <child link="steering_angle_backright"/>
+                <limit effort="100.0" lower="-1.570" upper="1.570" velocity="${steering_max_vel}"/>
+                <axis xyz="0 0 1"/>
+                <origin xyz="${-ch_x_depth/2+sa_x/2} ${-ch_y_width/2+sa_y/2} ${-ch_z_height/2-sa_z/2}"/>
+        </joint>
+
+	<joint name="chassis_to_steering_fl" type="revolute">
+		<parent link="chassis"/>
+		<child link="steering_angle_frontleft"/>
+		<limit effort="100.0" lower="-1.570" upper="1.570" velocity="${steering_max_vel}"/>
+		<axis xyz="0 0 1"/>
+		<origin xyz="${ch_x_depth/2-sa_x/2} ${ch_y_width/2-sa_y/2} ${-ch_z_height/2-sa_z/2}"/>
+	</joint> 
+	
+	<joint name="chassis_to_steering_bl" type="revolute">
+                <parent link="chassis"/>
+                <child link="steering_angle_backleft"/>
+                <limit effort="100.0" lower="-1.570" upper="1.570" velocity="${steering_max_vel}"/>
+                <axis xyz="0 0 1"/>
+                <origin xyz="${-ch_x_depth/2+sa_x/2} ${ch_y_width/2-sa_y/2} ${-ch_z_height/2-sa_z/2}"/>
+        </joint> 
+
+	<!-- wheel -->
+	<joint name="steering_to_wheel_fr" type="continuous"> <!-- continuous -->
+		<parent link="steering_angle_frontright"/>
+		<child link="wheel_frontright"/>
+		<axis xyz="0 0 1"/>
+		<origin xyz="${0} ${0} ${-sa_z/2+0.22}" rpy="${-1.570} 0 0"/>
+	</joint>
+
+	<joint name="steering_to_wheel_fl" type="continuous">
+                <parent link="steering_angle_frontleft"/>
+                <child link="wheel_frontleft"/>
+                <axis xyz="0 0 1"/>
+                <origin xyz="${0} ${0} ${-sa_z/2+0.22}" rpy="${-1.570} 0 0"/>
+        </joint>
+
+	<joint name="steering_to_wheel_br" type="continuous">
+                <parent link="steering_angle_backright"/>
+                <child link="wheel_backright"/>
+                <axis xyz="0 0 1"/>
+                <origin xyz="${0} ${0} ${-sa_z/2+0.22}" rpy="${-1.570} 0 0"/>
+        </joint>
+
+	<joint name="steering_to_wheel_bl" type="continuous">
+                <parent link="steering_angle_backleft"/>
+                <child link="wheel_backleft"/>
+                <axis xyz="0 0 1"/>
+                <origin xyz="${0} ${0} ${-sa_z/2+0.22}" rpy="${-1.570} 0 0"/>
+        </joint>
+
+	<!-- transmission -->
+
+        <!-- move camera neck/head -->
+	<transmission name="transm_chassis_to_cam_neck">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="chassis_to_cam_neck">
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor_cam_neck">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+<!--
+	<transmission name="transm_cam_neck_to_head">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="cam_neck_to_head">
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor_cam_head">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>-->
+
+	<!-- move steering angles -->
+<!--	<transmission name="transm_steer_fr">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="chassis_to_steering_fr">
+			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor_steer_fr">
+			<hardwareInterface>EffortJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<transmission name="transm_steer_fl">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="chassis_to_steering_fl">
+                        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="motor_steer_fl">
+                        <hardwareInterface>EffortJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+        </transmission>
+
+	<transmission name="transm_steer_br">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="chassis_to_steering_br">
+                        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="motor_steer_br">
+                        <hardwareInterface>EffortJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+        </transmission>
+
+	<transmission name="transm_steer_bl">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="chassis_to_steering_bl">
+                        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="motor_steer_bl">
+                        <hardwareInterface>EffortJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+        </transmission>
+-->
+	<!-- move wheels --> <!--
+	<transmission name="transm_wheel_fr">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="steering_to_wheel_fr">
+			<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor_wheel_fr">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<transmission name="transm_wheel_fl">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="steering_to_wheel_fl">
+			<hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="motor_wheel_fl">
+			<hardwareInterface>VelocityJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission>
+
+	<transmission name="transm_wheel_br">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="steering_to_wheel_br">
+                        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="motor_wheel_br">
+                        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+        </transmission>
+
+        <transmission name="transm_wheel_bl">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="steering_to_wheel_bl">
+                        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="motor_wheel_bl">
+                        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+                        <mechanicalReduction>1</mechanicalReduction>
+                </actuator>
+        </transmission>
+-->
+	<!-- plugins -->
+        <gazebo>
+                <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+		<robotNamespace>/mani</robotNamespace>
+		<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+		<legacyModeNS>true</legacyModeNS>
+                </plugin>
+        </gazebo>
+
+	<gazebo>
+		<static>false</static>
+	</gazebo>
+</robot>

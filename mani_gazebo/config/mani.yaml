@@ -1,0 +1,62 @@
+manisim:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 500
+
+  # Position Controllers ---------------------------------------
+
+  # move camera neck/head
+  cam_neck_ort:
+    type: effort_controllers/JointPositionController
+    joint: cam_1_neck
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  cam_head_ort:
+    type: effort_controllers/JointPositionController
+    joint: cam_2_head
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # move steering angles
+  steer_fl_ort:
+    type: effort_controllers/JointPositionController
+    joint: steer_1_fl
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  steer_rl_ort:
+    type: effort_controllers/JointPositionController
+    joint: steer_2_rl
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  steer_rr_ort:
+    type: effort_controllers/JointPositionController
+    joint: steer_3_rr
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  steer_fr_ort:
+    type: effort_controllers/JointPositionController
+    joint: steer_4_fr
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  # move wheels
+  drive_fl_vel:
+    type: velocity_controllers/JointVelocityController
+    joint: drive_1_fl
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  drive_rl_vel:
+    type: velocity_controllers/JointVelocityController
+    joint: drive_2_rl
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  drive_rr_vel:
+    type: velocity_controllers/JointVelocityController
+    joint: drive_3_rr
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+  drive_fr_vel:
+    type: velocity_controllers/JointVelocityController
+    joint: drive_4_fr
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+
+
