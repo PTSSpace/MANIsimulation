@@ -2,8 +2,8 @@ to launch Mani in Gazebo:
 
 1. $ cd ~/catkin_ws	 (i.e. your catkin workspace)
 2. $ source /opt/ros/kinetic/setup.bash
-3. $ source ~/catkin_ws/devel/setup.sh
-4. $ roslaunch mani gazebo.launch
+3. $ source ~/catkin_ws/devel/setup.sh OR $ source ~/catkin_ws/devel/setup.bash
+4. $ roslaunch manisim gazebo.launch
 
 to control mani's wheels and steering angles:
 
