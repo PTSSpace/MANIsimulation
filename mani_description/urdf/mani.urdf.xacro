@@ -18,14 +18,14 @@
 		<visual name="visual">
 			<origin xyz="0 0 0" rpy="${PI} 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-chassis.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>  
+				<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-chassis.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>  
 			</geometry>
 		</visual>
 
 		<collision name="collision">
                 	<origin xyz="0 0 0" rpy="${PI} 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-chassis.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+				<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-chassis.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
 			</geometry>
 		</collision>
 		
@@ -50,14 +50,14 @@
 		<visual name="visual">
 			<origin xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-cameraneck.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+				<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-cameraneck.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
 			</geometry>
 		</visual>
 
 		<collision name="collision">
 			<origin xyz="0 0 0"/>
                         <geometry>
-                               	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-cameraneck.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                               	<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-cameraneck.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
                         </geometry>
 		</collision>
 
@@ -82,14 +82,14 @@
 		<visual name="visual">
 			<origin xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-camerahead.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+				<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-camerahead.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
 			</geometry>
 		</visual>
 		
 		<collision name="collision">
 			<origin xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="file://$(find mani)/mani_description/meshes/MANI-camerahead.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+				<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-camerahead.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
 			</geometry>
 		</collision>
 
@@ -146,14 +146,14 @@
                 	<visual name="visual">
                     		<xacro:insert_block name="visual_origin"/>
                         	<geometry>
-                                	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                                	<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
                         	</geometry>
                 	</visual>
 
                		<collision name="collision">
                         	<xacro:insert_block name="collision_origin"/>
                         	<geometry>
-                            		<mesh filename="file://$(find mani)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                            		<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-steeringangle.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
                              </geometry>
                 	</collision>
 
@@ -206,7 +206,7 @@
                 	<visual name="visual">
 				<xacro:insert_block name="visual_origin"/>
                         	<geometry>
-                                	<mesh filename="file://$(find mani)/mani_description/meshes/MANI-wheel.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
+                                	<mesh filename="file://$(find manisim)/mani_description/meshes/MANI-wheel.STL" scale="${to_scale} ${to_scale} ${to_scale}"/>
                         	</geometry>
                 	</visual>
 
