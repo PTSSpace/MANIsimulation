@@ -1,14 +1,4 @@
 # MANIsimulation
-The gazebo simulation of the MANI rover.
-
-gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
-
-package dependencies:
-- ros_control: http://wiki.ros.org/ros_control#Install
-- gazebo_ros_pkgs: http://gazebosim.org/tutorials?tut=ros_installing
-
-
-# MANIsimulation
 The gazebo simulation of the MANI rover. The simulated rover can be controlled via the respective ROS topics. It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
 This package requires familarity with ROS kinetic kame and Gazebo.
@@ -74,6 +64,8 @@ You should see a MANI rover in an empty gazebo world.
 
 
 ## Gazebo
+gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
+
 
 ## ROS integration
 
