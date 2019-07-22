@@ -58,5 +58,3 @@ manisim:
     type: velocity_controllers/JointVelocityController
     joint: drive_4_fr
     pid: {p: 100.0, i: 0.01, d: 10.0}
-
-
