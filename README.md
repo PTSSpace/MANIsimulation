@@ -1,7 +1,7 @@
 # MANIsimulation
 The gazebo simulation of the MANI rover. The simulated rover can be controlled via the respective ROS topics. It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
-This package requires familarity with ROS kinetic kame and Gazebo.
+This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/).
 
 ## Getting Started
 
@@ -10,27 +10,25 @@ The following sections will guide you through installing the MANIsimulation pack
 ### Prerequisites
 
 1. Install `ROS kinetic`: http://wiki.ros.org/kinetic/Installation
+The MANIsimulation package requires ROS **kinetic kame**.
 
-2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install):
-``` 
-curl -sSL http://get.gazebosim.org | sh 
+2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install): ``` 
+$ curl -sSL http://get.gazebosim.org | sh 
 ```
 
-3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install):
-```
-sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
+3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install): ```
+$ sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
 ```
 
 4. Install [`gazebo_ros_pkgs`](http://gazebosim.org/tutorials?tut=ros_installing):
 ```  
-sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
+$ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 ```
 
 5. Install Catkin and set up a Catkin Workspace
 	
-	- install catkin
-	```
-	sudo apt-get install ros-kinetic-catkin
+	- install catkin ```
+	$ sudo apt-get install ros-kinetic-catkin
 	```
 	- create and build a catkin workspace
 	```
@@ -39,7 +37,12 @@ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 	$ cd ~/catkin_ws/
 	$ catkin_make
 	```
-If you are not **_very_** familiar with catkin: http://wiki.ros.org/catkin/Tutorials
+	source your new setup.*sh file:
+	```
+	$ source devel/setup.bash
+	```
+
+If you are not **_very_** familiar with catkin, and/or do not fully understand the steps taken above: http://wiki.ros.org/catkin/Tutorials
 
 ### Installing
 
