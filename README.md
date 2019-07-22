@@ -15,20 +15,18 @@ This package requires familarity with ROS kinetic kame and Gazebo.
 
 ## Getting Started
 
-Clone MANIsimulation into your catkin workspace (into catkin_ws/src). 
+The following sections will guide you through installing the MANIsimulation package and its dependencies.
 
 ### Prerequisites
 
 1. Install `ROS kinetic`: http://wiki.ros.org/kinetic/Installation
 
 2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install):
-
 ``` 
 curl -sSL http://get.gazebosim.org | sh 
 ```
 
-3. Install [`ros control`](http://wiki.ros.org/ros_control#Install):
-
+3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install):
 ```
 sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
 ```
@@ -39,30 +37,41 @@ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 ```
 
 5. Install Catkin and set up a Catkin Workspace
-If you are not familiar with catkin: http://wiki.ros.org/catkin/Tutorials
-
-```
-sudo apt-get install ros-kinetic-catkin
-```
-
+	
+	- install catkin
+	```
+	sudo apt-get install ros-kinetic-catkin
+	```
+	- create and build a catkin workspace
+	```
+	$ source /opt/ros/kinetic/setup.bash
+	$ mkdir -p ~/catkin_ws/src
+	$ cd ~/catkin_ws/
+	$ catkin_make
+	```
+If you are not **_very_** familiar with catkin: http://wiki.ros.org/catkin/Tutorials
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+It is assumed that you have installed catkin and sourced your environment. Clone MANIsimulation into your catkin workspace.
 
 ```
-Give the example
+cd ~/catkin_ws/src
+git clone https://github.com/PTScientists/MANIsimulation.git
 ```
 
-And repeat
-
+Build your catkin workspace.
 ```
-until finished
+cd ~/catkin_ws
+catkin_make
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Launch the simulation.
+```
+roslaunch manisim gazebo.launch
+```
+You should see a MANI rover in an empty gazebo world.
+
 
 ## Gazebo
 
