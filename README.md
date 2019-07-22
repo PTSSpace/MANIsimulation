@@ -11,7 +11,7 @@ The following sections will guide you through installing the MANIsimulation pack
 
 1. Install `ROS kinetic`: http://wiki.ros.org/kinetic/Installation
 
-The MANIsimulation package requires ROS **kinetic kame**.
+The MANIsimulation package requires ROS **Kinetic Kame**.
 
 2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install): 
 ``` 
@@ -28,7 +28,7 @@ $ sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
 $ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-control
 ```
 
-5. Install Catkin and set up a Catkin Workspace
+5. Install Catkin and set up a Catkin Workspace:
 	
 	- install catkin 
 	```
@@ -41,7 +41,7 @@ $ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-contro
 	$ cd ~/catkin_ws/
 	$ catkin_make
 	```
-	source your new setup.*sh file:
+	- source your new setup.*sh file:
 	```
 	$ source devel/setup.bash
 	```
@@ -50,24 +50,24 @@ If you are not **_very_** familiar with catkin and/or would not be able to expla
 
 ### Installing
 
-It is assumed that you have installed catkin and sourced your environment. 
+It is assumed that you have installed catkin and sourced your environment. It is also assumed that you already have a catkin workspace called *catkin_ws*. 
 
 Clone MANIsimulation into your catkin workspace.
 
 ```
-cd ~/catkin_ws/src
-git clone https://github.com/PTScientists/MANIsimulation.git
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/PTScientists/MANIsimulation.git
 ```
 
 Build your catkin workspace.
 ```
-cd ~/catkin_ws
-catkin_make
+$ cd ~/catkin_ws
+$ catkin_make
 ```
 
 Launch the simulation.
 ```
-roslaunch manisim gazebo.launch
+$ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
 
@@ -75,8 +75,7 @@ You should see a MANI rover in an empty gazebo world. Have fun!
 ## Gazebo
 gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
 
-
-## ROS integration
+## ROS Integration
 
 ## Deployment
 
