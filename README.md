@@ -10,13 +10,16 @@ The following sections will guide you through installing the MANIsimulation pack
 ### Prerequisites
 
 1. Install `ROS kinetic`: http://wiki.ros.org/kinetic/Installation
+
 The MANIsimulation package requires ROS **kinetic kame**.
 
-2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install): ``` 
+2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install): 
+``` 
 $ curl -sSL http://get.gazebosim.org | sh 
 ```
 
-3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install): ```
+3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install): 
+```
 $ sudo apt-get install ros-kinetic-ros-control ros-kinetic-ros-controllers
 ```
 
@@ -27,7 +30,8 @@ $ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-contro
 
 5. Install Catkin and set up a Catkin Workspace
 	
-	- install catkin ```
+	- install catkin 
+	```
 	$ sudo apt-get install ros-kinetic-catkin
 	```
 	- create and build a catkin workspace
@@ -42,11 +46,13 @@ $ sudo apt-get install ros-kinetic-gazebo-ros-pkgs ros-kinetic-gazebo-ros-contro
 	$ source devel/setup.bash
 	```
 
-If you are not **_very_** familiar with catkin, and/or do not fully understand the steps taken above: http://wiki.ros.org/catkin/Tutorials
+If you are not **_very_** familiar with catkin and/or would not be able to explain the steps taken above: http://wiki.ros.org/catkin/Tutorials
 
 ### Installing
 
-It is assumed that you have installed catkin and sourced your environment. Clone MANIsimulation into your catkin workspace.
+It is assumed that you have installed catkin and sourced your environment. 
+
+Clone MANIsimulation into your catkin workspace.
 
 ```
 cd ~/catkin_ws/src
@@ -63,7 +69,7 @@ Launch the simulation.
 ```
 roslaunch manisim gazebo.launch
 ```
-You should see a MANI rover in an empty gazebo world.
+You should see a MANI rover in an empty gazebo world. Have fun! 
 
 
 ## Gazebo
