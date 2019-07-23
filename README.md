@@ -1,7 +1,7 @@
 # MANIsimulation
 The gazebo simulation of the MANI rover. The simulated rover can be controlled via the respective ROS topics. It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
-This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/).
+This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
 
 ## Getting Started
 
@@ -11,9 +11,9 @@ The following sections will guide you through installing the MANIsimulation pack
 
 1. Install `ROS kinetic`: http://wiki.ros.org/kinetic/Installation
 
-The MANIsimulation package requires ROS **Kinetic Kame**.
+The MANIsimulation package requires ROS **Kinetic Kame**. Desktop-Full install is recommended for this package.
 
-2. Install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install): 
+2. If you didn't install Gazebo in step 1 (Gazebo7 is included in the ROS Kinetic Kame Desktop-Full install), install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) now: 
 ``` 
 $ curl -sSL http://get.gazebosim.org | sh 
 ```
@@ -74,6 +74,7 @@ You should see a MANI rover in an empty gazebo world. Have fun!
 
 ## Gazebo
 gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
+a word about graphic cards
 
 ## ROS Integration
 
@@ -107,7 +108,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Many thanks to PTScientists.
 
