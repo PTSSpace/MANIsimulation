@@ -71,6 +71,7 @@ $ catkin_make
 $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
+
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
 ## Gazebo
@@ -78,6 +79,7 @@ gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequireme
 a word about graphic cards
 
 ## ROS Integration
+lorem ipsum dolor sit amet
 
 ## Deployment
 
@@ -85,29 +87,27 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Gazebo](http://www.http://gazebosim.org) - the simulator used
+* [ROS](https://www.ros.org) - Robotic Operating System
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+??? Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+??? We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Nathalie Hager** - *Initial work* - [PTScientists](https://github.com/PTScientists)
+* **Nathalie Hager** - *Initial work* - [Git](https://github.com/NathalieMH)
 
 See also the list of [contributors](https://github.com/PTScientists/MANIsimulation/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the ??? License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Many thanks to PTScientists.
-
+* Many thanks to [PTScientists](https://ptscientists.com).
