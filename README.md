@@ -5,7 +5,7 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 
 ## Getting Started
 
-The following sections will guide you through installing the MANIsimulation package and its dependencies.
+The following sections will guide you through the installation of the MANIsimulation package and its dependencies.
 
 ### Prerequisites
 
@@ -17,6 +17,7 @@ The MANIsimulation package requires ROS **Kinetic Kame**. Desktop-Full install i
 ``` 
 $ curl -sSL http://get.gazebosim.org | sh 
 ```
+You can test whether Gazebo is properly installed by typing ```$ gazebo```. An empty gazebo world should be launched.
 
 3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install): 
 ```
@@ -52,25 +53,25 @@ If you are not **_very_** familiar with catkin and/or would not be able to expla
 
 It is assumed that you have installed catkin and sourced your environment. It is also assumed that you already have a catkin workspace called *catkin_ws*. 
 
-Clone MANIsimulation into your catkin workspace.
+1. Clone MANIsimulation into your catkin workspace.
 
 ```
 $ cd ~/catkin_ws/src
 $ git clone https://github.com/PTScientists/MANIsimulation.git
 ```
 
-Build your catkin workspace.
+2. Build your catkin workspace.
 ```
 $ cd ~/catkin_ws
 $ catkin_make
 ```
 
-Launch the simulation.
+3. Launch the simulation.
 ```
 $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
-
+_If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
 ## Gazebo
 gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
