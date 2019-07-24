@@ -1,13 +1,15 @@
 # MANIsimulation
-The gazebo simulation of the MANI rover. The simulated rover can be controlled via the respective ROS topics. It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
+The gazebo simulation of the MANI rover. The simulated rover can be controlled via the [respective ROS topics](https://github.com/PTScientists/MANIsimulation#manisimulation-and-ros). It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
-This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
+This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
 
 #### Table of Contents
 - [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
+	- [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
+	- [Installing](https://github.com/PTScientists/MANIsimulation#installing)
+- [Spawning MANI in a custom gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
-- [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration)
-- Deployment
+- [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 - [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
 - Contributing
 - Versioning
@@ -83,7 +85,11 @@ You should see a MANI rover in an empty gazebo world. Have fun!
 
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
-## Gazebo
+## Spawning MANI in a custom Gazebo world
+
+lorem ipsum dolor sit amet
+
+## Gazebo Integration
 ### Gazebo Overview
 Gazebo is a 3D robotics simulator. It is open-source.
 
@@ -96,7 +102,7 @@ a word about graphic cards
 - insert image of mani with front/rear/left/right labels here -
 - insert image of mani with joints here -
 
-## ROS (Robotic Operating System)
+## ROS Integration (Robotic Operating System)
 ### ROS Overview
 [Wikipedia's Definition](https://en.wikipedia.org/wiki/Robot_Operating_System) _June 24th 2019, 15:57 CET_
 >Robot Operating System (ROS or ros) is robotics middleware (i.e. collection of software frameworks for robot software development). Although ROS is not an operating system, it provides services designed for a heterogeneous computer cluster such as hardware abstraction, low-level device control, implementation of commonly used functionality, message-passing between processes, and package management.
@@ -104,6 +110,7 @@ a word about graphic cards
 To get started with ROS, you can find useful tutorials [here](http://wiki.ros.org/ROS/Tutorials).
 
 ### MANIsimulation and ROS
+#### move MANI
 You can move MANI in Gazebo by publishing to the following ROS topics:
 - Wheels
 	- front left: `/manisim/drive_fl_vel/command`
@@ -118,10 +125,14 @@ You can move MANI in Gazebo by publishing to the following ROS topics:
 - Camera Head
 	- camera pan: `/manisim/camera_pan_ort/command`
 	- camera tilt: `/manisim/camera_tilt_ort/command`
-	
+
+#### MANI joint data
 If you want to know the current position, velocity or effort of any of MANI's joints, subscribe to the `/manisim/joint_states` topic. For information on the joint states ROS message, look [here](http://docs.ros.org/api/sensor_msgs/html/msg/JointState.html). You can read up on `joint_state_publisher` [here](http://wiki.ros.org/joint_state_publisher).
 
-You can get camera data from MANI by subscribing to the following topics:
+#### MANI camera
+The currently implemented depth camera for the MANI gazebo model is based on [the kinect camera setup described in this tutorial](http://gazebosim.org/tutorials?tut=ros_depth_camera&cat=connect_ros). This tutorial also explains how to visualize the generated point cloud in Rviz.
+
+MANI's camera publishes to the following topics:
 - /camera/depth/camera_info
 - /camera/depth/image_raw
 - /camera/depth/image_raw/compressed
@@ -138,13 +149,9 @@ You can get camera data from MANI by subscribing to the following topics:
 - /camera_ir/parameter_descriptions
 - /camera_ir/parameter_updates
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
-* [Gazebo](http://www.http://gazebosim.org) - the simulator used
+* [Gazebo](http://gazebosim.org) - Gazebo 3D Robotics Simulator
 * [ROS](https://www.ros.org) - Robotic Operating System
 
 ## Contributing
