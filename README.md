@@ -3,6 +3,16 @@ The gazebo simulation of the MANI rover. The simulated rover can be controlled v
 
 This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
 
+#### Table of Contents
+- [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
+- [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
+- [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration)
+- Deployment
+- [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
+- Contributing
+- Versioning
+- [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
+
 ## Getting Started
 
 The following sections will guide you through the installation of the MANIsimulation package and its dependencies.
@@ -13,11 +23,10 @@ The following sections will guide you through the installation of the MANIsimula
 
 The MANIsimulation package requires ROS **Kinetic Kame**. Desktop-Full install is recommended for this package.
 
-2. If you didn't install Gazebo in step 1 (Gazebo7 is included in the ROS Kinetic Kame Desktop-Full install), install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) now: 
+2. If you didn't install Gazebo in step 1 (Gazebo7 is included in the ROS Kinetic Kame Desktop-Full install), install [`Gazebo`](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install) now. You can test whether Gazebo is properly installed by typing ```$ gazebo```. An empty gazebo world should be launched.
 ``` 
 $ curl -sSL http://get.gazebosim.org | sh 
 ```
-You can test whether Gazebo is properly installed by typing ```$ gazebo```. An empty gazebo world should be launched.
 
 3. Install [`ros_control`](http://wiki.ros.org/ros_control#Install): 
 ```
@@ -51,7 +60,7 @@ If you are not **_very_** familiar with catkin and/or would not be able to expla
 
 ### Installing
 
-It is assumed that you have installed catkin and sourced your environment. It is also assumed that you already have a catkin workspace called *catkin_ws*. 
+It is assumed that you have installed catkin and sourced your environment. It is also assumed that you already have a catkin workspace called `catkin_ws`. 
 
 1. Clone MANIsimulation into your catkin workspace.
 
@@ -75,11 +84,59 @@ You should see a MANI rover in an empty gazebo world. Have fun!
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
 ## Gazebo
+### Gazebo Overview
+Gazebo is a 3D robotics simulator. It is open-source.
+
+You can find useful tutorials [here](http://gazebosim.org/tutorials). A good starting point for creating robot models in Gazebo is [here](http://gazebosim.org/tutorials?cat=build_robot).
+
 gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
 a word about graphic cards
 
-## ROS Integration
-lorem ipsum dolor sit amet
+### MANI in Gazebo
+- insert image of mani with front/rear/left/right labels here -
+- insert image of mani with joints here -
+
+## ROS (Robotic Operating System)
+### ROS Overview
+[Wikipedia's Definition](https://en.wikipedia.org/wiki/Robot_Operating_System) _June 24th 2019, 15:57 CET_
+>Robot Operating System (ROS or ros) is robotics middleware (i.e. collection of software frameworks for robot software development). Although ROS is not an operating system, it provides services designed for a heterogeneous computer cluster such as hardware abstraction, low-level device control, implementation of commonly used functionality, message-passing between processes, and package management.
+
+To get started with ROS, you can find useful tutorials [here](http://wiki.ros.org/ROS/Tutorials).
+
+### MANIsimulation and ROS
+You can move MANI in Gazebo by publishing to the following ROS topics:
+- Wheels
+	- front left: `/manisim/drive_fl_vel/command`
+	- rear left: `/manisim/drive_rl_vel/command`
+	- rear right: `/manisim/drive_rr_vel/command`
+	- front right: `/manisim/drive_fr_vel/command`
+- Steering Angles
+	- front left: `/manisim/steer_fl_ort/command`
+	- rear left: `/manisim/steer_rl_ort/command`
+	- rear right: `/manisim/steer_rr_ort/command`
+	- front right: `/manisim/steer_fr_ort/command`
+- Camera Head
+	- camera pan: `/manisim/camera_pan_ort/command`
+	- camera tilt: `/manisim/camera_tilt_ort/command`
+	
+If you want to know the current position, velocity or effort of any of MANI's joints, subscribe to the `/manisim/joint_states` topic. For information on the joint states ROS message, look [here](http://docs.ros.org/api/sensor_msgs/html/msg/JointState.html). You can read up on `joint_state_publisher` [here](http://wiki.ros.org/joint_state_publisher).
+
+You can get camera data from MANI by subscribing to the following topics:
+- /camera/depth/camera_info
+- /camera/depth/image_raw
+- /camera/depth/image_raw/compressed
+- /camera/depth/image_raw/compressed/parameter_descriptions
+- /camera/depth/image_raw/compressed/parameter_updates
+- /camera/depth/image_raw/compressedDepth
+- /camera/depth/image_raw/compressedDepth/parameter_descriptions
+- /camera/depth/image_raw/compressedDepth/parameter_updates
+- /camera/depth/image_raw/theora
+- /camera/depth/image_raw/theora/parameter_descriptions
+- /camera/depth/image_raw/theora/parameter_updates
+- /camera/depth/points
+- /camera_ir/depth/camera_info
+- /camera_ir/parameter_descriptions
+- /camera_ir/parameter_updates
 
 ## Deployment
 
