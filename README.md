@@ -7,7 +7,7 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 - C [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
 	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
 	- C [Installing](https://github.com/PTScientists/MANIsimulation#installing)
-- [Spawning MANI in a custom gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
+- C [Spawning MANI in a (custom) gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 - C [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
@@ -81,7 +81,7 @@ $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
 
-_If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
+_If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#a-word-about-graphic-cards)._
 
 ![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png)
 
@@ -107,7 +107,7 @@ You can set each coordinate individually. For example, to set x=5, type:
 
 You can also set them all together. The order doesn't matter here:
 
-```$ roslaunch manisim gazebo.launch y:=3.2 x:=5 world:=moon z:=1```
+```$ roslaunch manisim gazebo.launch y:=3.2 x:=5 world:=empty z:=1```
 
 ## Gazebo Integration
 ### Gazebo Overview
@@ -115,8 +115,10 @@ Gazebo is a 3D robotics simulator. It is open-source.
 
 You can find useful tutorials [here](http://gazebosim.org/tutorials). A good starting point for creating robot models in Gazebo is [here](http://gazebosim.org/tutorials?cat=build_robot).
 
-gazebo system requirements: http://wiki.ros.org/simulator_gazebo/SystemRequirements
-a word about graphic cards
+Before using Gazebo, check out it's system requirements [here](http://wiki.ros.org/simulator_gazebo/SystemRequirements). 
+
+###### a word about graphic cards
+There is a typical error called `BadDrawable` due to incompatible graphics cards/drivers. Often, this error occurs only sometimes during launch, and otherwise Gazebo launches up fine. If you get this error, please check whether your drivers are installed properly. You can also try to launch the MANIsimulation with roslaunch multiple times to see if it eventually launches up successfully. Feel free to also check out [this post](http://answers.gazebosim.org/question/3703/baddrawable-error-on-first-run-of-gzserver-after-install/) and [this post](https://answers.ros.org/question/27952/gazebo-shutdown-baddrawable/) regarding this issue.
 
 ### MANI in Gazebo
 - insert image of mani with front/rear/left/right labels here -
