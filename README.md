@@ -10,7 +10,7 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 - C [Spawning MANI in a (custom) world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
 	- [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
-	- [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
+	- C [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 	- [ROS Overview](https://github.com/PTScientists/MANIsimulation#ROS-Overview)
 	- [move MANI](https://github.com/PTScientists/MANIsimulation#move-mani)
@@ -121,7 +121,7 @@ Gazebo is a 3D robotics simulator. It is open-source. You can find useful tutori
 
 Before using Gazebo, check out its system requirements [here](http://wiki.ros.org/simulator_gazebo/SystemRequirements). 
 
-##### a word about graphic cards
+##### A WORD ABOUT GRAPHIC CARDS
 There is a typical error called `BadDrawable` due to incompatible graphics cards/drivers. Often, this error occurs only sometimes during launch, and otherwise Gazebo launches up fine. If you get this error, please check whether your drivers are installed properly. You can also try to launch the MANIsimulation with roslaunch multiple times to see if it eventually launches up successfully. Feel free to also check out [this post](http://answers.gazebosim.org/question/3703/baddrawable-error-on-first-run-of-gzserver-after-install/) and [this post](https://answers.ros.org/question/27952/gazebo-shutdown-baddrawable/) regarding this issue.
 
 ### MANI in Gazebo
@@ -201,4 +201,4 @@ At the time of writing this README, the license hasn't been decided upon yet. Pl
 
 ## Acknowledgments
 
-* [PTScientists](https://ptscientists.com).
+* [PTScientists](https://ptscientists.com)
