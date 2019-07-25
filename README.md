@@ -139,7 +139,7 @@ MANI's links and joints are labelled based on their positions in respect to the 
 
 ## ROS Integration (Robotic Operating System)
 ### ROS Overview
-[Wikipedia's Definition](https://en.wikipedia.org/wiki/Robot_Operating_System) _June 24th 2019, 15:57 CET_
+[Wikipedia's Definition](https://en.wikipedia.org/wiki/Robot_Operating_System) _July 24th 2019, 15:57 CET_
 >Robot Operating System (ROS or ros) is robotics middleware (i.e. collection of software frameworks for robot software development). Although ROS is not an operating system, it provides services designed for a heterogeneous computer cluster such as hardware abstraction, low-level device control, implementation of commonly used functionality, message-passing between processes, and package management.
 
 To get started with ROS, you can find useful tutorials [here](http://wiki.ros.org/ROS/Tutorials).
@@ -147,17 +147,17 @@ To get started with ROS, you can find useful tutorials [here](http://wiki.ros.or
 ### MANIsimulation and ROS
 #### move MANI
 You can move MANI in Gazebo by publishing to the following ROS topics. They expect a `std_msgs/Float64` message.
-- Wheels
+- Wheels (Velocity in m/s)
 	- front left: `/manisim/drive_fl_vel/command`
 	- rear left: `/manisim/drive_rl_vel/command`
 	- rear right: `/manisim/drive_rr_vel/command`
 	- front right: `/manisim/drive_fr_vel/command`
-- Steering Angles
+- Steering Angles (Orientation in rad)
 	- front left: `/manisim/steer_fl_ort/command`
 	- rear left: `/manisim/steer_rl_ort/command`
 	- rear right: `/manisim/steer_rr_ort/command`
 	- front right: `/manisim/steer_fr_ort/command`
-- Camera Head
+- Camera Head (Orientation in rad)
 	- camera pan: `/manisim/camera_pan_ort/command`
 	- camera tilt: `/manisim/camera_tilt_ort/command`
 
