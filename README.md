@@ -89,15 +89,15 @@ _If you get an error, check whether your graphic card is [compatible with Gazebo
 
 It is assumed that you have sourced your environment. It is also assumed that you have a catkin workspace called `catkin_ws`. 
 
-####Spawn MANI in an empty gazebo world
+#### Spawn MANI in an empty gazebo world
 ```$ roslaunch manisim gazebo.launch```
 
-####Spawn MANI in a custom gazebo world
+#### Spawn MANI in a custom gazebo world
 1. Save a `.world` file in `~/catkin_ws/src/MANIsimulation/manisim_gazebo/worlds`. The manisim package comes with `empty.world` and `moon.world`. 
 2. Launch MANIsimulation. For example, if you want to launch MANI in `moon.world`, type:
 ```$ roslaunch manisim gazebo.launch world:=moon```
 
-####Set the position where MANI is spawned at
+#### Set the position where MANI is spawned at
 You can define the x, y and/or z position MANI is spawned at when launching Gazebo. The default values are x=0, y=0, z=0.2175. _If z was 0, MANI would be placed slightly in the ground. This is due to the position of MANI's own origin._
 
 You can set each coordinate individually. For example, to set x=5, type:
