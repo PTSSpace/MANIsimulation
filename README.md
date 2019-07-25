@@ -1,7 +1,7 @@
 # MANIsimulation
 The gazebo simulation of the MANI rover. The simulated rover can be controlled via the [respective ROS topics](https://github.com/PTScientists/MANIsimulation#manisimulation-and-ros). It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
-This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo-integration).
+This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo-integration).
 
 #### Table of Contents
 - [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
