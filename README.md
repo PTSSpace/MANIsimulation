@@ -4,19 +4,19 @@ The gazebo simulation of the MANI rover. The simulated rover can be controlled v
 This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo-integration).
 
 #### Table of Contents
-- C [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
-	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
-	- C [Installing](https://github.com/PTScientists/MANIsimulation#installing)
-- C [Spawning MANI in a (custom) world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-world)
-- C [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
-	- C [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
-	- C [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
+- [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
+	- [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
+	- [Installing](https://github.com/PTScientists/MANIsimulation#installing)
+- [Spawning MANI in a (custom) world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-world)
+- [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
+	- [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
+	- [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 	- [ROS Overview](https://github.com/PTScientists/MANIsimulation#ROS-Overview)
 	- [move MANI](https://github.com/PTScientists/MANIsimulation#move-mani)
 	- [MANI joint data](https://github.com/PTScientists/MANIsimulation#mani-joint-data)
 	- [MANI camera](https://github.com/PTScientists/MANIsimulation#mani-camera)
-- C [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
+- [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
 - [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
 
 ## Getting Started
@@ -107,7 +107,7 @@ It is assumed that you have sourced your environment. It is also assumed that yo
 #### Set the position where MANI is spawned at
 You can define the x-, y- and z-position MANI is spawned at when launching Gazebo. The default values are x=0, y=0 and z=0.2175. _(If z was 0, MANI would be placed slightly in the ground of empty.world. This is due to the position of MANI's own origin.)_
 
-You can set each coordinate individually. For example, to set x=5, type:
+You can set each position coordinate individually. For example, to set x=5, type:
 
 ```$ roslaunch manisim gazebo.launch x:=5```
 
@@ -191,7 +191,7 @@ MANI's camera publishes to the following topics:
 
 ## Authors
 
-* **Nathalie Hager** - *Initial work* - [Git](https://github.com/NathalieMH)
+* **Nathalie Hager** - *Initial work* - [Git Profile](https://github.com/NathalieMH)
 
 See also the list of [contributors](https://github.com/PTScientists/MANIsimulation/contributors) who participated in this project.
 
