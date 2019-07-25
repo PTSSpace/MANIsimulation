@@ -8,8 +8,8 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
 	- C [Installing](https://github.com/PTScientists/MANIsimulation#installing)
 - C [Spawning MANI in a (custom) world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-world)
-- [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
-	- [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
+- C [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
+	- C [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
 	- C [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 	- [ROS Overview](https://github.com/PTScientists/MANIsimulation#ROS-Overview)
@@ -122,7 +122,7 @@ Gazebo is a 3D robotics simulator. It is open-source. You can find useful tutori
 Before using Gazebo, check out its system requirements [here](http://wiki.ros.org/simulator_gazebo/SystemRequirements). 
 
 ##### A WORD ABOUT GRAPHIC CARDS
-There is a typical error called `BadDrawable` due to incompatible graphics cards/drivers. Often, this error occurs only sometimes during launch, and otherwise Gazebo launches up fine. If you get this error, please check whether your drivers are installed properly. You can also try to launch the MANIsimulation with roslaunch multiple times to see if it eventually launches up successfully. Feel free to also check out [this post](http://answers.gazebosim.org/question/3703/baddrawable-error-on-first-run-of-gzserver-after-install/) and [this post](https://answers.ros.org/question/27952/gazebo-shutdown-baddrawable/) regarding this issue.
+There is a typical error called `BadDrawable` which is due to incompatible graphic cards/drivers. Often, this error occurs only sometimes during launch, and otherwise Gazebo launches up fine. If you get this error, please check whether your drivers are installed properly. You can also try to launch the MANIsimulation with roslaunch multiple times to see if it eventually launches up successfully. Feel free to also check out [this post](http://answers.gazebosim.org/question/3703/baddrawable-error-on-first-run-of-gzserver-after-install/) and [this post](https://answers.ros.org/question/27952/gazebo-shutdown-baddrawable/) regarding this issue.
 
 ### MANI in Gazebo
 MANI consists of the following links:
