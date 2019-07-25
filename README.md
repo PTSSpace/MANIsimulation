@@ -1,15 +1,21 @@
 # MANIsimulation
 The gazebo simulation of the MANI rover. The simulated rover can be controlled via the [respective ROS topics](https://github.com/PTScientists/MANIsimulation#manisimulation-and-ros). It can also be controlled via a joint stick if used in conjunction with the [MANIros](https://github.com/PTScientists/MANIros) package.
 
-This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
+This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo-integration).
 
 #### Table of Contents
 - C [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
 	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
 	- C [Installing](https://github.com/PTScientists/MANIsimulation#installing)
-- C [Spawning MANI in a (custom) gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
+- C [Spawning MANI in a (custom) world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
+	- [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
+	- [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
+	- [ROS Overview](https://github.com/PTScientists/MANIsimulation#ROS-Overview)
+	- [move MANI](https://github.com/PTScientists/MANIsimulation#move-mani)
+	- [MANI joint data](https://github.com/PTScientists/MANIsimulation#mani-joint-data)
+	- [MANI camera](https://github.com/PTScientists/MANIsimulation#mani-camera)
 - C [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
 - [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
 
@@ -81,18 +87,18 @@ $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
 
-_If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#a-word-about-graphic-cards)._
+_If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo-integration)._
 
 ![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png)
 
-## Spawning MANI in a (custom) Gazebo world
+## Spawning MANI in a (custom) world
 
 It is assumed that you have sourced your environment. It is also assumed that you have a catkin workspace called `catkin_ws`. 
 
-#### Spawn MANI in an empty gazebo world
+#### Spawn MANI in an empty world
 ```$ roslaunch manisim gazebo.launch```
 
-#### Spawn MANI in a custom gazebo world
+#### Spawn MANI in a custom world
 1. Save a `.world` file in `~/catkin_ws/src/MANIsimulation/manisim_gazebo/worlds`. The manisim package comes with `empty.world` and `moon.world`. 
 2. Launch MANIsimulation with the `world` command line argument. For example, if you want to launch MANI in `moon.world`, type:
 
@@ -111,18 +117,25 @@ You can also set them all together. The order doesn't matter here:
 
 ## Gazebo Integration
 ### Gazebo Overview
-Gazebo is a 3D robotics simulator. It is open-source.
+Gazebo is a 3D robotics simulator. It is open-source. You can find useful tutorials [here](http://gazebosim.org/tutorials). A good starting point for creating robot models in Gazebo is [here](http://gazebosim.org/tutorials?cat=build_robot).
 
-You can find useful tutorials [here](http://gazebosim.org/tutorials). A good starting point for creating robot models in Gazebo is [here](http://gazebosim.org/tutorials?cat=build_robot).
+Before using Gazebo, check out its system requirements [here](http://wiki.ros.org/simulator_gazebo/SystemRequirements). 
 
-Before using Gazebo, check out it's system requirements [here](http://wiki.ros.org/simulator_gazebo/SystemRequirements). 
-
-###### a word about graphic cards
+##### a word about graphic cards
 There is a typical error called `BadDrawable` due to incompatible graphics cards/drivers. Often, this error occurs only sometimes during launch, and otherwise Gazebo launches up fine. If you get this error, please check whether your drivers are installed properly. You can also try to launch the MANIsimulation with roslaunch multiple times to see if it eventually launches up successfully. Feel free to also check out [this post](http://answers.gazebosim.org/question/3703/baddrawable-error-on-first-run-of-gzserver-after-install/) and [this post](https://answers.ros.org/question/27952/gazebo-shutdown-baddrawable/) regarding this issue.
 
 ### MANI in Gazebo
-- insert image of mani with front/rear/left/right labels here -
-- insert image of mani with joints here -
+MANI consists of the following links:
+- chassis
+- camera_pan, camera_tilt, camera_kinect
+- steering_angle_frontleft, steering_angle_rearleft, steering_angle_rearright, steering_angle_frontright
+- wheel_frontleft, wheel_rearleft, wheel_rearright, wheel_frontright
+
+`chassis` is the root link. The other links are all connected to the root/to each other via joints. The [ROS Integration section](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system) describes how to control these joints via ros topics.
+
+MANI's links and joints are labelled based on their positions in respect to the robot itself. The positions are as follows:
+
+![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_sidelabels.png)
 
 ## ROS Integration (Robotic Operating System)
 ### ROS Overview
@@ -133,7 +146,7 @@ To get started with ROS, you can find useful tutorials [here](http://wiki.ros.or
 
 ### MANIsimulation and ROS
 #### move MANI
-You can move MANI in Gazebo by publishing to the following ROS topics:
+You can move MANI in Gazebo by publishing to the following ROS topics. They expect a `std_msgs/Float64` message.
 - Wheels
 	- front left: `/manisim/drive_fl_vel/command`
 	- rear left: `/manisim/drive_rl_vel/command`
