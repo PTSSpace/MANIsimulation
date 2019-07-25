@@ -83,7 +83,7 @@ $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
 
-![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png "Example MANI in empty world" | width=100)
+![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png)
 
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
