@@ -4,15 +4,13 @@ The gazebo simulation of the MANI rover. The simulated rover can be controlled v
 This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo).
 
 #### Table of Contents
-- [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
+- C [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
 	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
-	- [Installing](https://github.com/PTScientists/MANIsimulation#installing)
+	- C [Installing](https://github.com/PTScientists/MANIsimulation#installing)
 - [Spawning MANI in a custom gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
-- [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
-- Contributing
-- Versioning
+- C [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
 - [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
 
 ## Getting Started
@@ -83,13 +81,30 @@ $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
 
-![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png)
-
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
-## Spawning MANI in a custom Gazebo world
+![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png)
 
-lorem ipsum dolor sit amet
+## Spawning MANI in a (custom) Gazebo world
+
+It is assumed that you have sourced your environment. It is also assumed that you have a catkin workspace called `catkin_ws`. 
+
+####Spawn MANI in an empty gazebo world
+```$ roslaunch manisim gazebo.launch```
+
+####Spawn MANI in a custom gazebo world
+1. Save a `.world` file in `~/catkin_ws/src/MANIsimulation/manisim_gazebo/worlds`. The manisim package comes with `empty.world` and `moon.world`. 
+2. Launch MANIsimulation. For example, if you want to launch MANI in `moon.world`, type:
+```$ roslaunch manisim gazebo.launch world:=moon```
+
+####Set the position where MANI is spawned at
+You can define the x, y and/or z position MANI is spawned at when launching Gazebo. The default values are x=0, y=0, z=0.2175. _If z was 0, MANI would be placed slightly in the ground. This is due to the position of MANI's own origin._
+
+You can set each coordinate individually. For example, to set x=5, type:
+```$ roslaunch manisim gazebo.launch x:=5```
+
+You can also set them all together. The order doesn't matter here:
+```$ roslaunch manisim gazebo.launch y:=3.2 x:=5 world:=moon z:=1```
 
 ## Gazebo Integration
 ### Gazebo Overview
@@ -156,14 +171,6 @@ MANI's camera publishes to the following topics:
 * [Gazebo](http://gazebosim.org) - Gazebo 3D Robotics Simulator
 * [ROS](https://www.ros.org) - Robotic Operating System
 
-## Contributing
-
-??? Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-??? We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
 * **Nathalie Hager** - *Initial work* - [Git](https://github.com/NathalieMH)
@@ -172,8 +179,8 @@ See also the list of [contributors](https://github.com/PTScientists/MANIsimulati
 
 ## License
 
-This project is licensed under the ??? License - see the [LICENSE.md](LICENSE.md) file for details
+At the time of writing this README, the license hasn't been decided upon yet. Please refer to the PTScientists Git Repo for more information.
 
 ## Acknowledgments
 
-* Many thanks to [PTScientists](https://ptscientists.com).
+* [PTScientists](https://ptscientists.com).
