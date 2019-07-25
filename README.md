@@ -5,7 +5,7 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 
 #### Table of Contents
 - [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
-	- [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
+	- C [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
 	- [Installing](https://github.com/PTScientists/MANIsimulation#installing)
 - [Spawning MANI in a custom gazebo world](https://github.com/PTScientists/MANIsimulation#spawning-mani-in-a-custom-gazebo-world)
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
@@ -82,6 +82,8 @@ $ catkin_make
 $ roslaunch manisim gazebo.launch
 ```
 You should see a MANI rover in an empty gazebo world. Have fun! 
+
+![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_headshot_frontotherangle.png "Example MANI in empty world" | width=100)
 
 _If you get an error, check whether your graphic card is [compatible with Gazebo](https://github.com/PTScientists/MANIsimulation/blob/master/README.md#gazebo)._
 
