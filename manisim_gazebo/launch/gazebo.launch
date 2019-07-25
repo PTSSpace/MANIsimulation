@@ -1,5 +1,11 @@
 <launch>
 
+  <!-- command line parameters -->
+  <arg name="world" default="empty"/>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.2175"/>
+
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
@@ -14,17 +20,16 @@
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
-    <arg name="headless" value="$(arg headless)"/>
+    <arg name="headless" value="$(arg headless)"/> 
+    <arg name="world_name" value="$(find manisim)/manisim_gazebo/worlds/$(arg world).world"/>
   </include>
-
-<!-- <arg name="world_name" value="$(find manisim)/manisim_gazebo/worlds/moon.world"/>-->
 
   <!-- Convert an xacro and put on parameter server -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 0.2175 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+        args="-x $(arg x) -y $(arg y) -z $(arg z) -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
 
   <!-- ROS CONTROL starts here --> 
   <!-- Load joint controller configurations from YAML file to parameter server -->
