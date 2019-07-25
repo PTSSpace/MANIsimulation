@@ -260,7 +260,7 @@
         </wheel>
 
 	<!-- camera head 60-60 grad-->
-	<joint name="cam_1_neck" type="revolute"> <!-- revolute -->
+	<joint name="cam_pan" type="revolute"> <!-- revolute -->
 		<parent link="chassis"/>
 		<child link="camera_pan"/>
 		<limit effort="100.0" lower="-1.0472" upper="1.0472" velocity="10"/>
@@ -271,7 +271,7 @@
 	<!-- dz/dy describe the distances between tilt and pan on the left side (where the actuator is)-->
 	<xacro:property name="campan_dz" value="0.09846"/>
 	<xacro:property name="campan_dy" value="0.097975"/>
-	<joint name="cam_2_head" type="revolute">
+	<joint name="cam_tilt" type="revolute">
 		<parent link="camera_pan"/>
 		<child link="camera_tilt"/>
 		<limit effort="100.0" lower="-${PI/2}" upper="${PI/2}" velocity="10"/>
@@ -358,23 +358,23 @@
 
 	<!-- transmission -->
         <!-- move camera neck/head --> 
-	<transmission name="transm_cam_neck">
+	<transmission name="transm_camera_pan">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="cam_1_neck">
+		<joint name="cam_pan">
 			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
-		<actuator name="motor_cam_neck">
+		<actuator name="motor_camera_pan">
 			<hardwareInterface>EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
 
-	<transmission name="transm_cam_head">
+	<transmission name="transm_camera_tilt">
 		<type>transmission_interface/SimpleTransmission</type>
-		<joint name="cam_2_head">
+		<joint name="cam_tilt">
 			<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
 		</joint>
-		<actuator name="motor_cam_head">
+		<actuator name="motor_camera_tilt">
 			<hardwareInterface>EffortJointInterface</hardwareInterface>
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>

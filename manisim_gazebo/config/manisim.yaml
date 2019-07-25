@@ -7,14 +7,14 @@ manisim:
   # Position Controllers ---------------------------------------
 
   # move camera neck/head
-  cam_neck_ort:
+  camera_pan_ort:
     type: effort_controllers/JointPositionController
-    joint: cam_1_neck
+    joint: cam_pan
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
-  cam_head_ort:
+  camera_tilt_ort:
     type: effort_controllers/JointPositionController
-    joint: cam_2_head
+    joint: cam_tilt
     pid: {p: 100.0, i: 0.01, d: 10.0}
 
   # move steering angles

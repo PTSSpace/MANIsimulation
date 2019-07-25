@@ -36,7 +36,7 @@
   <rosparam file="$(find manisim)/manisim_gazebo/config/manisim.yaml" command="load"/>
 
   <!-- load the controllers -->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/manisim" args="joint_state_controller cam_neck_ort cam_head_ort steer_fl_ort steer_rl_ort steer_rr_ort steer_fr_ort drive_fl_vel drive_rl_vel drive_rr_vel drive_fr_vel"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/manisim" args="joint_state_controller camera_pan_ort camera_tilt_ort steer_fl_ort steer_rl_ort steer_rr_ort steer_fr_ort drive_fl_vel drive_rl_vel drive_rr_vel drive_fr_vel"/>
 
 <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
