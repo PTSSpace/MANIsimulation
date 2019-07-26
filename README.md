@@ -104,7 +104,7 @@ It is assumed that you have sourced your environment. It is also assumed that yo
 
 ```$ roslaunch manisim gazebo.launch world:=moon```
 
-A safe spawning spot on moon.world is (x,y,z) = (0, 20, 0.2175).
+A safe spawning spot on moon.world is (x,y,z) = (0, 20, 0).
 
 Please be aware that when launching MANI in a custom world file, it needs to be spawned in a 'safe' spot to ensure functionality of the simulation. For example, if you were to launch MANI on a steep slope, MANI might start sliding and behave unpredictably right after being spawned. See the section below on how to set a spawning spot (position).
 
