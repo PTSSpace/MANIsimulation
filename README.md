@@ -11,6 +11,7 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 - [Gazebo Integration](https://github.com/PTScientists/MANIsimulation#gazebo-integration)
 	- [Gazebo Overview](https://github.com/PTScientists/MANIsimulation#gazebo-overview)
 	- [MANI in Gazebo](https://github.com/PTScientists/MANIsimulation#mani-in-gazebo)
+	- [MANI Inertia](https://github.com/PTScientists/MANIsimulation#mani-inertia)
 - [ROS Integration (Robotic Operating System)](https://github.com/PTScientists/MANIsimulation#ros-integration-robotic-operating-system)
 	- [ROS Overview](https://github.com/PTScientists/MANIsimulation#ROS-Overview)
 	- [move MANI](https://github.com/PTScientists/MANIsimulation#move-mani)
@@ -140,6 +141,9 @@ MANI consists of the following links:
 MANI's links and joints are labelled based on their positions in respect to the robot itself. The positions are as follows:
 
 ![alt text](https://github.com/PTScientists/MANIsimulation/blob/master/mani_sidelabels.png)
+
+### MANI Inertia 
+You can change MANI's inertia moments if needed. Open the file `MANIsimulation/manisim_description/urdf/manisim.urdf.xacro` and proceed as described [here](http://gazebosim.org/tutorials?tut=inertia&cat=build_robot) in section "Filling in the tags in URDF or SDF". `manisim.urdf.xacro` is a URDF based file.
 
 ## ROS Integration (Robotic Operating System)
 ### ROS Overview
