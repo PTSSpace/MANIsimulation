@@ -4,6 +4,7 @@ The gazebo simulation of the MANI rover. The simulated rover can be controlled v
 This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [Gazebo](http://gazebosim.org/). Please also check whether your graphic card is [compatible with Gazebo](http://wiki.ros.org/simulator_gazebo/SystemRequirements).
 
 #### Table of Contents
+- [Overview]
 - [Getting Started](https://github.com/PTScientists/MANIsimulation#getting-started)
 	- [Prerequisites](https://github.com/PTScientists/MANIsimulation#prerequisites)
 	- [Installing](https://github.com/PTScientists/MANIsimulation#installing)
@@ -19,6 +20,9 @@ This package requires familarity with [ROS](http://www.ros.org/about-ros/) and [
 	- [MANI camera](https://github.com/PTScientists/MANIsimulation#mani-camera)
 - [Built With](https://github.com/PTScientists/MANIsimulation#built-with)
 - [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
+
+## Overview
+tba
 
 ## Getting Started
 
