@@ -22,7 +22,7 @@ This package requires familiarity with [ROS](http://www.ros.org/about-ros/) and 
 - [Authors, License, Acknowledgements](https://github.com/PTScientists/MANIsimulation#authors)
 
 ## Overview
-tba
+This package simulates the MANI rover in Gazebo. Gazebo is a 3D open-source robotics simulator. To control the simulated rover, you can use ROS. ROS, or **R**obotic **O**perating **S**ystem, is "an open-source, meta-operating system for your robot. It provides the services you would expect from an operating system (...). It also provides tools and libraries for obtaining, building, writing, and running code across multiple computers." (ROS Introduction, http://wiki.ros.org/ROS/Introduction, Aug 16th 2019). To move the simulated rover (e.g. to move its wheels / steering angles / camera head), you can publish to so-called *ROS topics* (see section "ROS Overview"). The Gazebo simulator will then take the published information from ROS and move the simulated rover accordingly. The simulated rover's camera also publishes to the respective ROS topics, and you can get the camera's output by subscribing to these ROS topics (see section "MANI camera").
 
 ## Getting Started
 
